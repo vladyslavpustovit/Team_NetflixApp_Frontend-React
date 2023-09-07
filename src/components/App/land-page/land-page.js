@@ -1,5 +1,4 @@
 import './land-page.css'
-import './land-page.css'
 export default function Landing () {
 
     return(
