@@ -35,7 +35,7 @@ export default function AppRouter() {
                     />
                     <Route
                         path='/'
-                        element={user ? <Home/> : <Navigate to='/login'/>}
+                        element={user ? <Home/> : <Navigate to='/landing'/>}
                     />
                     <Route
                         path='/categories'
