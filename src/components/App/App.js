@@ -1,6 +1,7 @@
 import Footer from "../footer/footer";
 import Header from "../header/header";
 import AppRouter from "../../routing-module";
+import Navbar from "./land-page/Navbar";
 
 export default function App() {
     const pathname = window.location.pathname;
