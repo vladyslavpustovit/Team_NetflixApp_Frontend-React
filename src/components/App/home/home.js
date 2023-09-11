@@ -1,9 +1,10 @@
 import './home.css';
+import Cards from '../../cards/Cards'
 
 function Home() {
   return (
       <>
-          <h1>Home</h1>
+          <Cards />
       </>
   );
 }
