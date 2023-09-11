@@ -6,7 +6,7 @@ export default function Landing () {
             <header className="showcase">
                 <div className="showcase-top">
                     <img src="/assets/images/logo.png" alt="" />
-                    <a href="/login" className="btn btn-rounded">Sign In</a>
+                    <a href="#" className="btn btn-rounded">Sign In</a>
                 </div>
                 <div className="showcase-content">
                     <h1>See what's next</h1>
@@ -129,21 +129,21 @@ export default function Landing () {
                             </tr>
                             <tr>
                                 <td>Unlimited movies and TV shows</td>
-                                <td><i class="fas fa-check"></i></td>
-                                <td><i class="fas fa-check"></i></td>
-                                <td><i class="fas fa-check"></i></td>
+                                <td><i className="fas fa-check"></i></td>
+                                <td><i className="fas fa-check"></i></td>
+                                <td><i className="fas fa-check"></i></td>
                             </tr>
                             <tr>
                                 <td>Cancel anytime</td>
-                                <td><i class="fas fa-check"></i></td>
-                                <td><i class="fas fa-check"></i></td>
-                                <td><i class="fas fa-check"></i></td>
+                                <td><i className="fas fa-check"></i></td>
+                                <td><i className="fas fa-check"></i></td>
+                                <td><i className="fas fa-check"></i></td>
                             </tr>
                             <tr>
                                 <td>First month free</td>
-                                <td><i class="fas fa-check"></i></td>
-                                <td><i class="fas fa-check"></i></td>
-                                <td><i class="fas fa-check"></i></td>
+                                <td><i className="fas fa-check"></i></td>
+                                <td><i className="fas fa-check"></i></td>
+                                <td><i className="fas fa-check"></i></td>
                             </tr>
                             </tbody>
                         </table>
@@ -151,9 +151,9 @@ export default function Landing () {
                 </div>
             </section>
 
-            <footer class="footer">
+            <footer className="footer">
                 <p>Questions? Call 1-866-579-7172</p>
-                <div class="footer-cols">
+                <div className="footer-cols">
                     <ul>
                         <li><a href="#">FAQ</a></li>
                         <li><a href="#">Investor Relations</a></li>
