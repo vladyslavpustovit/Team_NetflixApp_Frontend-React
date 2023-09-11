@@ -1,56 +1,45 @@
 import './header.css'
+import {useLogout} from "../../hooks/useLogout";
+import {useAuthContext} from "../../hooks/useAuthContext";
+import {Link} from "react-router-dom";
 function Header() {
+    const { logout } = useLogout();
+    const { user } = useAuthContext();
+    const handleClick = () => {
+        logout();
+    }
     return (
         <>
-            <nav className="navbar navbar-expand-lg bg-body-tertiary">
-                <div className="container-fluid">
-                    <a className="navbar-brand text">Netflix</a>
-                    <button
-                        className="navbar-toggler"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation"
-                    >
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
-                                <a
-                                    className="nav-link"
-                                    aria-current="page"
-                                    href="/"
-                                >Home</a
-                                >
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">Subscribe</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">About</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="/categories">Genres</a>
-                            </li>
-                        </ul>
-                        <form className="d-flex" role="search">
-                            <input
-                                className="form-control me-2"
-                                type="search"
-                                placeholder="Search"
-                                aria-label="Search"
-                            />
-                            <button class="btn btn-outline-light" type="submit">
-                                Search
-                            </button>
-                            <button id="btn-logout" class="btn btn-outline-danger mx-2">
-                                Logout
-                            </button>
-                        </form>
+            <nav className="flex items-center justify-between flex-wrap bg-neutral-900 px-6">
+                <div className="flex items-center flex-shrink-0 mr-6 hover:bg-neutral-800 mr-2">
+                    <Link to='/'>
+                    <img src="/assets/images/logo.png" className="fill-current w-32"/>
+                    </Link>
+                </div>
+
+                <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+
+                    {/*Left Side Links*/}
+                    <div className="text-sm lg:flex-grow">
+                        <Link to="/categories" className="block hover:underline mt-4 lg:inline-block lg:mt-0 hover:text-red-600 mr-4">
+                            Categories (works)
+                        </Link>
                     </div>
+
+                    {/*Right Side*/}
+                    <div>
+                        {user && (
+                            <div>
+                                <span className='mr-4'>Welcome, {user.username}</span>
+                                <button
+                                    onClick={handleClick}
+                                    className="bg-red-700 rounded p-2 hover:bg-red-900">
+                                    Logout
+                                </button>
+                            </div>
+                        )}
+                    </div>
+
                 </div>
             </nav>
         </>
