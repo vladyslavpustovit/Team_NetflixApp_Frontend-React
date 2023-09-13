@@ -3,17 +3,17 @@
   color: #b91c1c;
   display: flex;
   border-radius: 10px;
-  margin: 1.5rem 1.5rem;
+  margin: 1.5rem 1rem;
   justify-content: center;
   align-items: center;
   padding: 0 1.5rem;
-  background-color: rgba(32, 31, 31, 0.9);
 }
 
 /* Default styles for pagination */
 .pagi {
   display: flex;
-  flex-wrap: wrap;
+  
+  /* flex-wrap: wrap; */
   border-radius: 1rem;
   justify-content: center;
   align-items: center;
