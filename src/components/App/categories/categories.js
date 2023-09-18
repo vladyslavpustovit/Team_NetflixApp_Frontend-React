@@ -3,6 +3,7 @@ import {MovieCard} from "../content/movieCard";
 import {useEffect, useState} from "react";
 import {useMoviesCatalog} from "../../../hooks/useMoviesCatalog";
 function Categories() {
+    
     const {fetchMovieList, isLoading} = useMoviesCatalog();
     const [movies, setMovies] = useState([]);
     useEffect(() => {
