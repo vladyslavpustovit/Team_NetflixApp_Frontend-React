@@ -24,8 +24,8 @@ function Header() {
 
   return (
     <>
-      <nav className={`parentNav flex items-center m-3 px-5 ${menuOpen ? 'flex-col' : ''}`}>
-        <div className="flex items-center flex-shrink-0 mr-2">
+      <nav className={`parentNav flex items-center m-3 px-5 ${menuOpen ? '' : ''}`}>
+        <div className="flex  flex-shrink-0 mr-2">
           <Link to="/">
             <img
               src="/assets/images/logo.png"
@@ -35,7 +35,7 @@ function Header() {
           </Link>
         </div>
 
-        <div className="w-full flex justify-end lg:hidden">
+        <div className="w-full flex justify-end md:hidden">
           <button
             onClick={handleToggleMenu}
             className="flex px-2 py-1 text-gray-600 hover:text-red-600 focus:outline-none focus:text-red-600">
