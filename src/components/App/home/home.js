@@ -63,10 +63,11 @@ export default function Home() {
 
           <div className="parent truncate">
             <ReactPaginate
-              className="pagi"
+              className="paginate"
               pageCount={totalPages}
               onPageChange={handlePageChange}
               forcePage={currentPage}
+              pageLinkClassName='PageLink'//this is the anchor(a) tage inside the pagination 
             />
           </div>
         </>
