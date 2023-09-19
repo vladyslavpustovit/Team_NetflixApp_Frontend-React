@@ -39,17 +39,17 @@ function Header() {
         Home
       </Link>
       <Link
-        to='https://www.netflix.com/tudum/top10/'
+        to="/categories"
         as="li"
         className="p-2 ">
-        Top 10
+          Categories
       </Link>
-      <Link
-        to="/"
-        as="li"
-        className="p-2 ">
-        <Link to="/categories">Categories</Link>
-      </Link>
+        <Link
+            to="/top"
+            as="li"
+            className="p-2 ">
+            Top Movies
+        </Link>
     </ul>
   );
 
