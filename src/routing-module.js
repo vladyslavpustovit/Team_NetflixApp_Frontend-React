@@ -11,6 +11,7 @@ import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import Home from "./components/App/home/home";
 import Categories from "./components/App/categories/categories";
+import TopMovies from "./components/App/top-movies/top-movies";
 
 
 export default function AppRouter() {
@@ -40,6 +41,10 @@ export default function AppRouter() {
                     <Route
                         path='/categories'
                         element={user ? <Categories/> : <Navigate to='/login'/>}
+                    />
+                    <Route
+                        path='/top'
+                        element={user ? <TopMovies/> : <Navigate to='/login'/>}
                     />
                 </Routes>
                 {user && <Footer />}
