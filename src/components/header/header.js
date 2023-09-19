@@ -1,31 +1,65 @@
-import React, { useState } from "react";
-import { useLogout } from "../../hooks/useLogout";
+import React from "react";
+import './header.css'
+
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { Link } from "react-router-dom";
-const menu =  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" className="w-10 h-10">
-<path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-</svg>
-const close = <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" className="w-10 h-10">
-<path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-</svg>
+import { useLogout } from "../../hooks/useLogout";
+import {
+  Navbar,
+  MobileNav,
+  Typography,
+  Button,
+  IconButton,
+} from "@material-tailwind/react";
 
 function Header() {
-  const { logout } = useLogout();
+  const [openNav, setOpenNav] = React.useState(false);
   const { user } = useAuthContext();
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const handleToggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+  const { logout } = useLogout();
 
   const handleClick = () => {
     logout();
   };
+  
+
+  React.useEffect(() => {
+    window.addEventListener(
+      "resize",
+      () => window.innerWidth >= 960 && setOpenNav(false)
+    );
+  }, []);
+
+
+  const navList = (
+    <ul className="font-medium mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-10" id="navItems">
+      <Link
+        to="/"
+        as="li"
+        className="p-2 font-medium">
+        Home
+      </Link>
+      <Link
+        to='https://www.netflix.com/tudum/top10/'
+        as="li"
+        className="p-2 ">
+        Top 10
+      </Link>
+      <Link
+        to="/"
+        as="li"
+        className="p-2 ">
+        <Link to="/categories">Categories</Link>
+      </Link>
+    </ul>
+  );
 
   return (
-    <>
-      <nav className={`parentNav flex items-center m-3 px-5 ${menuOpen ? 'flex-col' : ''}`}>
-        <div className="flex items-center flex-shrink-0 mr-2">
+    <Navbar className="mx-auto max-w-screen-xl py-2 lg:px-8 lg:py-4">
+      <div className="container mx-auto flex items-center justify-between p-2">
+        <Typography
+          as="a"
+          href="#"
+          className="mr-4 cursor-pointer">
           <Link to="/">
             <img
               src="/assets/images/logo.png"
@@ -33,40 +67,67 @@ function Header() {
               alt=""
             />
           </Link>
-        </div>
+        </Typography>
+        <div className="hidden lg:block">{navList}</div>
 
-        <div className="w-full flex justify-end lg:hidden">
-          <button
-            onClick={handleToggleMenu}
-            className="flex px-2 py-1 text-gray-600 hover:text-red-600 focus:outline-none focus:text-red-600">
-            {menuOpen ? <>{close}</> : <>{menu}</>}
-          </button>
-        </div>
 
-        <div
-          className={`${
-            menuOpen ? "flex flex-col items-end" : "hidden"
-          } w-full lg:w-auto lg:flex-grow lg:flex lg:items-center lg:justify-end`}>
-          <div className="lg:inline-block lg:mt-0 hover:text-red-600 hover:no-underline mr-4">
-            <Link to="/categories" onClick={handleToggleMenu}>
-              Categories (works)
-            </Link>
-          </div>
-          {user && (
-            <div className="mt-4 lg:inline-block lg:mt-0">
-              <span className="mr-4">Welcome, {user.username}</span>
-              <button
-                onClick={handleClick}
-                className="bg-red-700 rounded p-2 hover:bg-red-900">
-                Logout
-              </button>
-            </div>
+      <div>
+      <span className="mr-5 invisible lg:visible">Welcome, {user.username}</span>
+        <Button
+          onClick={handleClick}
+          variant="gradient"
+          size="sm"
+          className="hidden lg:inline-block bg-red-700 rounded p-3 hover:bg-red-900">
+          <span className="">Logout</span>
+        </Button>
+
+      </div>
+        <IconButton
+          variant="text"
+          className="mr-4 ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+          ripple={false}
+          onClick={() => setOpenNav(!openNav)}>
+          {openNav ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              className="h-6 w-6"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}>
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}>
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
           )}
+        </IconButton>
+      </div>
+      <MobileNav open={openNav}>
+        <div className="container mx-auto pl-2">
+          {navList}
+          <Button
+            onClick={handleClick}
+            className="ml-2 bg-red-700 rounded p-2.5 hover:bg-red-900 my-2 ">
+            <span className="">Logout</span>
+          </Button>
         </div>
-      </nav>
-
-      <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-    </>
+      </MobileNav>
+    </Navbar>
   );
 }
 

@@ -9,6 +9,9 @@ body {
     font-family: Verdana, sans-serif;
 }
 
+:root{
+    --text-color: #b91c1c;
+}
 * {
     margin: 0;
     padding: 0;
