@@ -27,6 +27,7 @@
   margin: 6px;
   height: 100%;
   width: 100%;
+  padding: 0.5rem
 }
 
 
@@ -44,23 +45,58 @@
   color: #9d0911;
 }
 
-/* Media query for responsive styling */
-@media (max-width: 768px) {
-  /* Adjust styles for smaller screens */
+
+@media (max-width: 1222px) {
+  
   .parent {
-    flex-direction: column; /* Stack items vertically */
-    padding: 1.5rem; /* Add more padding for better spacing */
+    flex-direction: column; 
+    padding: 1.5rem; 
   }
 
   .paginate {
     margin-top: 1rem;
     justify-content: space-around;
-     /* Add space between pagination and content */
+     
   }
 
+  .PageLink{
+    font-size: 20px; 
+    padding: 1rem;
+  }
   .paginate li {
-    font-size: 16px; /* Reduce font size for smaller screens */
-    padding: 1rem; /* Adjust padding for smaller screens */
+    font-size: 20px; 
+    padding: 0px; 
+    margin: 0px;
   }
   
 }
+
+
+
+@media (max-width: 767px) {
+
+  .parent {
+    flex-direction: column; 
+    padding: 1.5rem; 
+  }
+
+  .paginate {
+    margin-top: 1rem;
+    justify-content: space-around;
+    
+  }
+
+  .PageLink{
+    font-size: 12px; 
+    padding: 0.5rem;
+  }
+  .paginate li {
+    font-size: 13px; 
+    padding: 0px;
+    margin: 0px;
+  }
+  
+}
+
+
+

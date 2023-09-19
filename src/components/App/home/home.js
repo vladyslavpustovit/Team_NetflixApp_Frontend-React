@@ -61,7 +61,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="parent truncate">
+          <div className="parent flex items-center gap-4">
             <ReactPaginate
               className="paginate"
               pageCount={totalPages}
