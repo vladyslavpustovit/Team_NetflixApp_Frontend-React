@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {useMoviesCatalog} from "../../../hooks/useMoviesCatalog";
 import {MovieCard} from "../content/movieCard";
-import {Spinner} from "@material-tailwind/react";
 import HeroSection from "../content/hero-section/hero-section";
+import {usePagination} from "../../../hooks/usePagination";
+import ReactPaginate from "react-paginate";
 
 const TopMovies = () => {
     const {fetchMovieList, isLoading} = useMoviesCatalog();
@@ -19,20 +20,45 @@ const TopMovies = () => {
                 console.error("An error occurred while fetching data:", error);
             }
         };
-
         fetchData();
     }, []);
 
+    // Pagination
+    const itemsPerPage = 16;
+    const {
+        currentPage,
+        totalPages,
+        subset,
+        handlePageChange,
+    } = usePagination(movies, itemsPerPage);
+
+
     return(
         <div className="flex flex-col items-center">
-                {isLoading && <Spinner className="h-1/6 w-1/6 text-red-600/80" />}
+            {isLoading ? (
+                <div className="loading-container h-full flex align-middle justify-center text-3xl p-10">
+                    <h1>Loading...</h1>
+                </div>
+            ) : (
+                <>
             <HeroSection/>
             <h1 className='ml-1.5 text-2xl font-bold mb-6'>Top Movies</h1>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 px-6">
-                  {movies.map((movie) => (
+                  {subset.map((movie) => (
                       <MovieCard key={movie.id} movie={movie} />
                   ))}
               </div>
+            <div className="parent flex items-center gap-4">
+                <ReactPaginate
+                    className="paginate"
+                    pageCount={totalPages}
+                    onPageChange={handlePageChange}
+                    forcePage={currentPage}
+                    pageLinkClassName='PageLink'//this is the anchor(a) tage inside the pagination
+                />
+            </div>
+                </>
+            )}
         </div>
     );
 }

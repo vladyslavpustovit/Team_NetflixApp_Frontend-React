@@ -5,14 +5,12 @@ import ReactPaginate from "react-paginate";
 import { useAuthContext } from "../../../hooks/useAuthContext";
 import { MovieCard } from "../content/movieCard";
 import HeroSection from "../content/hero-section/hero-section";
+import {usePagination} from "../../../hooks/usePagination";
 
 export default function Home() {
   const { user } = useAuthContext();
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 16;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,14 +37,15 @@ export default function Home() {
     fetchData(); 
   }, []);
 
-  // pagination
-  const totalPages = Math.ceil(movies.length / itemsPerPage);
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const subset = movies.slice(startIndex, endIndex);
-  const handlePageChange = (selectedPage) => {
-    setCurrentPage(selectedPage.selected);
-  };
+  // Pagination
+  const itemsPerPage = 16;
+  const {
+    currentPage,
+    totalPages,
+    subset,
+    handlePageChange,
+  } = usePagination(movies, itemsPerPage);
+
 
   return (
     <div className="container m-auto">

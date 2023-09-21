@@ -1,8 +1,7 @@
 import './categories.css';
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useMoviesCatalog} from "../../../hooks/useMoviesCatalog";
 import CardsSection from "../content/cards-section";
-import {Spinner} from "@material-tailwind/react";
 import HeroSection from "../content/hero-section/hero-section";
 function Categories() {
     
@@ -36,19 +35,26 @@ function Categories() {
     }, []);
     return (
         <div className="flex flex-col items-center">
-            {isLoading && <Spinner className="h-1/6 w-1/6 text-red-600/80" />}
-            <HeroSection/>
-            <div className="mx-auto flex w-full gap-x-8 px-4 md:px-8 2xl:container">
-                <div className="my-4 w-full">
-                    {genres.map((genre) => (
-                        <CardsSection
-                            key={genre}
-                            name={genre}
-                            movies={movies.filter((movie) => movie.genre.includes(genre))}
-                        />
-                    ))}
+            {isLoading ? (
+                <div className="loading-container h-full flex align-middle justify-center text-3xl p-10">
+                    <h1>Loading...</h1>
                 </div>
-            </div>
+            ) : (
+                <>
+                    <HeroSection/>
+                    <div className="mx-auto flex w-full gap-x-8 px-4 md:px-8 2xl:container">
+                        <div className="my-4 w-full">
+                            {genres.map((genre) => (
+                                <CardsSection
+                                    key={genre}
+                                    name={genre}
+                                    movies={movies.filter((movie) => movie.genre.includes(genre))}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </>
+            )}
         </div>
     );
 }
