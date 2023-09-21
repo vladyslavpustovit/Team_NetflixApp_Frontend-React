@@ -1,6 +1,9 @@
+import {Link} from "react-router-dom";
+
 export const MovieCard = ({movie}) => {
     return (
             <div className="relative cursor-pointer overflow-hidden rounded-lg shadow-xl hover:brightness-125">
+                <Link to={`/movie/${movie._id}`} className="movie-card-link">
                 <img alt={movie.name} src={movie.image_url} width="300" height="450" decoding="async" data-nimg="future" className="h-auto w-full rounded-lg object-cover" loading="lazy" style={{color: 'transparent'}}/>
                     <div className="absolute bottom-0 left-0 z-10 flex h-2/3 w-full flex-col justify-end bg-gradient-to-t from-black px-5 py-4">
                         <h4 title={movie.name} className="truncate font-semibold">{movie.name}</h4>
@@ -17,6 +20,7 @@ export const MovieCard = ({movie}) => {
                             </div>
                         </div>
                     </div>
+                </Link>
             </div>
     )
 }

@@ -4,6 +4,7 @@ import {MovieCard} from "../content/movieCard";
 import HeroSection from "../content/hero-section/hero-section";
 import {usePagination} from "../../../hooks/usePagination";
 import ReactPaginate from "react-paginate";
+import LoadingSpinner from "../content/loading-spinner";
 
 const TopMovies = () => {
     const {fetchMovieList, isLoading} = useMoviesCatalog();
@@ -36,9 +37,7 @@ const TopMovies = () => {
     return(
         <div className="flex flex-col items-center">
             {isLoading ? (
-                <div className="loading-container h-full flex align-middle justify-center text-3xl p-10">
-                    <h1>Loading...</h1>
-                </div>
+                <LoadingSpinner/>
             ) : (
                 <>
             <HeroSection/>

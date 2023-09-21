@@ -1,0 +1,14 @@
+.underline {
+    content: "";
+    position: absolute;
+    height: 5px;
+    width: 110px;
+    background-color: rgb(255, 0, 0, 0.8);
+    margin: 0;
+    padding: 0;
+}
+@media (max-width: 768px) {
+    #left-info img {
+        max-height: 450px;
+    }
+}
