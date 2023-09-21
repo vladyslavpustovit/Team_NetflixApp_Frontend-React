@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 
 import { useAuthContext } from "../../../hooks/useAuthContext";
-import { MovieCard } from "../../App/content/movieCard";
+import { MovieCard } from "../content/movieCard";
+import HeroSection from "../content/hero-section/hero-section";
 
 export default function Home() {
   const { user } = useAuthContext();
@@ -55,7 +56,8 @@ export default function Home() {
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-4 gap-5 px-6">
+          <HeroSection/>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 px-6">
             {subset.map((data) => (
               <MovieCard key={data.id} movie={data} />
             ))}
