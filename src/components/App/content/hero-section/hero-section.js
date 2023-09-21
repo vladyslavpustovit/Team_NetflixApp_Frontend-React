@@ -1,6 +1,4 @@
 import Carousel from "nuka-carousel";
-import "./hero-section.css";
-
 const HeroSection = () => {
     return(
         <div id="welcome-slider" className="mx-auto flex w-full sm:px-0 md:px-8 2xl:container">
