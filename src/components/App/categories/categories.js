@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import {useMoviesCatalog} from "../../../hooks/useMoviesCatalog";
 import CardsSection from "../content/cards-section";
 import HeroSection from "../content/hero-section/hero-section";
+import LoadingSpinner from "../content/loading-spinner";
 function Categories() {
     
     const {fetchMovieList, isLoading} = useMoviesCatalog();
@@ -36,9 +37,7 @@ function Categories() {
     return (
         <div className="flex flex-col items-center">
             {isLoading ? (
-                <div className="loading-container h-full flex align-middle justify-center text-3xl p-10">
-                    <h1>Loading...</h1>
-                </div>
+                <LoadingSpinner/>
             ) : (
                 <>
                     <HeroSection/>

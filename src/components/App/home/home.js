@@ -6,6 +6,7 @@ import { useAuthContext } from "../../../hooks/useAuthContext";
 import { MovieCard } from "../content/movieCard";
 import HeroSection from "../content/hero-section/hero-section";
 import {usePagination} from "../../../hooks/usePagination";
+import LoadingSpinner from "../content/loading-spinner";
 
 export default function Home() {
   const { user } = useAuthContext();
@@ -50,9 +51,7 @@ export default function Home() {
   return (
     <div className="container m-auto">
       {loading ? (
-        <div className="loading-container h-full flex align-middle justify-center text-3xl p-10">
-          <h1>Loading...</h1>
-        </div>
+          <LoadingSpinner/>
       ) : (
         <>
           <HeroSection/>
