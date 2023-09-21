@@ -18,7 +18,7 @@ body {
     box-sizing: border-box;
 }
 
-/* Welcome Slider Styling */
+/* -------------- Welcome Slider Styling -------------- */
 
 #welcome-slider {
     background-color: rgb(10, 20, 20, 0.3) !important;
@@ -45,3 +45,94 @@ body {
         height: 220px !important;
     }
 }
+
+/* -------------- Pagination -------------- */
+
+/* Default styles for the parent container */
+.parent {
+    color: #b91c1c;
+    display: flex;
+    border-radius: 10px;
+    margin: 1.5rem 1rem;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1.5rem;
+}
+
+/* Default styles for pagination */
+.paginate {
+    display: flex;
+    border-radius: 1rem;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.paginate li {
+    border-radius: 0.5rem;
+    font-size: 19px;
+    font-weight: 700;
+    margin: 6px;
+    height: 100%;
+    width: 100%;
+    padding: 0.5rem
+}
+
+.PageLink{
+    width: 100%;
+    height: 100%;
+    padding: 1.5rem;
+}
+
+.paginate li:hover {
+    background-color: rgb(24, 24, 24);
+    color: #9d0911;
+}
+
+@media (max-width: 1222px) {
+
+    .parent {
+        flex-direction: column;
+        padding: 1.5rem;
+    }
+
+    .paginate {
+        margin-top: 1rem;
+        justify-content: space-around;
+
+    }
+
+    .PageLink{
+        font-size: 20px;
+        padding: 1rem;
+    }
+    .paginate li {
+        font-size: 20px;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .parent {
+        flex-direction: column;
+        padding: 1.5rem;
+    }
+
+    .paginate {
+        margin-top: 1rem;
+        justify-content: space-around;
+
+    }
+
+    .PageLink{
+        font-size: 12px;
+        padding: 0.5rem;
+    }
+    .paginate li {
+        font-size: 13px;
+        padding: 0;
+        margin: 0;
+    }
+}
+
