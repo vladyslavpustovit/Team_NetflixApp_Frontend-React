@@ -20,11 +20,11 @@ export default function AppRouter() {
     return (
         <>
             <BrowserRouter>
-                {user && <Header />}
+                {/* {user && <Header />} */}
                 <Routes>
                     <Route
                         path='/landing'
-                        element={!user ? <Landing/> : <Navigate to='/'/>}
+                        element={<Landing/> }
                     />
                     <Route
                         path='/login'
@@ -47,7 +47,7 @@ export default function AppRouter() {
                         element={user ? <TopMovies/> : <Navigate to='/login'/>}
                     />
                 </Routes>
-                {user && <Footer />}
+                {/* {user && <Footer />} */}
             </BrowserRouter>
         </>
     )
