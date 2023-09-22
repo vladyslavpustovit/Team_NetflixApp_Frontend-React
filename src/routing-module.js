@@ -12,6 +12,7 @@ import Footer from "./components/footer/footer";
 import Home from "./components/App/home/home";
 import Categories from "./components/App/categories/categories";
 import TopMovies from "./components/App/top-movies/top-movies";
+import About from "./components/App/about/about";
 
 
 export default function AppRouter() {
@@ -45,6 +46,10 @@ export default function AppRouter() {
                     <Route
                         path='/top'
                         element={user ? <TopMovies/> : <Navigate to='/login'/>}
+                    />
+                    <Route
+                        path='/about'
+                        element={ <About/> }
                     />
                 </Routes>
                 {user && <Footer />}

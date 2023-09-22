@@ -32,10 +32,10 @@ export default function Home() {
       } catch (error) {
         console.error(error);
       } finally {
-        setLoading(false); 
+        setLoading(false);
       }
     };
-    fetchData(); 
+    fetchData();
   }, []);
 
   // pagination
@@ -63,11 +63,13 @@ export default function Home() {
 
           <div className="parent flex items-center gap-4">
             <ReactPaginate
+              pageRangeDisplayed={1}
               className="paginate"
               pageCount={totalPages}
               onPageChange={handlePageChange}
               forcePage={currentPage}
-              pageLinkClassName='PageLink'//this is the anchor(a) tage inside the pagination 
+              activeClassName="active"
+              pageLinkClassName="PageLink"
             />
           </div>
         </>
