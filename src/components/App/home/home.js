@@ -16,7 +16,7 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/movies", {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/movies`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
