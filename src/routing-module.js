@@ -21,7 +21,7 @@ export default function AppRouter() {
     return (
         <>
             <BrowserRouter>
-                {user && <Header />}
+                 {user && <Header />}
                 <Routes>
                     <Route
                         path='/landing'
@@ -52,7 +52,7 @@ export default function AppRouter() {
                         element={user ? <MovieDetails/> : <Navigate to='/login'/>}
                     />
                 </Routes>
-                {user && <Footer />}
+                 {user && <Footer />}
             </BrowserRouter>
         </>
     )
