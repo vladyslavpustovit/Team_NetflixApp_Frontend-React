@@ -5,13 +5,6 @@ import { faChevronRight} from '@fortawesome/free-solid-svg-icons';
 import Footer from '../../footer/footer';
 import Tab from './Tab';
 
-
-
-
-
-
-
-
 function Landing () {
 
     return(
@@ -23,11 +16,8 @@ function Landing () {
           <div>
           <img 
             className="w-32 h-32 md:w-52 align-items-center"
-            src="./assets/images/logo.png" alt='logo-image'/>
+            src="/assets/images/logo.png" alt='logo-image'/>
           </div>
-
-          {/* large screen */}
-          <div></div>
 
           {/* small screen */}
           <div className="flex space-x-4">
@@ -56,7 +46,7 @@ function Landing () {
           <p className="text-xl md:text-3xl">
             Watch anywhere. Cancel at anytime
           </p>
-          <a href="#" class="btn btn-xl"
+          <a href="#" className="btn btn-xl"
           > 
         </a>
 
@@ -81,6 +71,6 @@ function Landing () {
         </div>
         
   );
-};
+}
 
 export default Landing

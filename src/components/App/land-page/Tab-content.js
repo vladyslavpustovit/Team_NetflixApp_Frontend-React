@@ -27,7 +27,7 @@ function TabContent(props) {
                 Watch Free For 30 Days
               </a>
             </div>
-            <img src="./assets/images/cancel1.png" alt="" />
+            <img src="/assets/images/cancel1.png" alt="" />
           </div>
         
        }
@@ -49,7 +49,7 @@ function TabContent(props) {
       </div>
       <div className="tab-2-content-bottom mt-8 grid grid-cols-3 gap-8 text-center">
         <div>
-          <img src="./assets/images/content1.png" alt="" />
+          <img src="/assets/images/content1.png" alt="" />
           <p className="text-md mb-6 text-lg">Watch on your TV</p>
           <p className="text-dark  text-gray-600">
             Smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray
@@ -57,7 +57,7 @@ function TabContent(props) {
           </p>
         </div>
         <div>
-          <img src="./assets/images/content2.png" alt="" />
+          <img src="/assets/images/content2.png" alt="" />
           <p className="text-md mb-6 text-lg">
             Watch instantly or download for later
           </p>
@@ -66,7 +66,7 @@ function TabContent(props) {
           </p>
         </div>
         <div>
-          <img src="./assets/images/content3.png" alt="" />
+          <img src="/assets/images/content3.png" alt="" />
           <p className="text-md mb-6 text-lg">Use any computer</p>
           <p className="text-dark text-gray-600 ">
             Watch right on Netflix.com.
