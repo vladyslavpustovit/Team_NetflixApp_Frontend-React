@@ -1,34 +1,65 @@
 import React from "react";
-// import Lottie from "lottie-react";
+import "./about.css";
+
+import {
+  Tabs,
+  TabsHeader,
+  TabsBody,
+  Tab,
+  TabPanel,
+} from "@material-tailwind/react";
 
 function About() {
+  const data = require("./about.json");
+
   return (
-    <div className="bg-blue-200 my-5 w-full flex flex-col md:flex-row md:space-x-4 md:space-y-0 h-full">
-      <div className="bg-sky-300 md:w-2/3 lg:w-3/4 flex flex-col items-center px-5">
-        <h1 className="text-center text-1xl md:text-3xl py-10">About Us</h1>
-        <div className="sm:border rounded">
-          <img src="/assets/images/cancel1.png" alt="tree" className=""/>
-          {/* <Lottie/> */}
-          <p className="p-5">
-            To be truly brilliant, an essay needs to utilise the right language.
-            You could make a great point, but if it’s not intelligently
-            articulated, you almost needn’t have bothered. Developing the
-            language skills to build an argument and to write persuasively is
-            crucial if you’re to write outstanding essays every time. In this
-            article, we’re going to equip you with the words and phrases you
-            need to write a top-notch essay, along with examples of how to
-            utilise them. It’s by no means an exhaustive list, and there will
-            often be other ways of using the words and phrases we describe that
-            we won’t have room to include, but there should be more than enough
-            below to help you make an instant improvement to your essay-writing
-            skills. This article is suitable for native English speakers and
-            those who are learning English at Oxford Royale Academy and are just
-            taking their first steps into essay writing.
-          </p>
-        </div>
+    <>
+      <div className="mt-10 px-5">
+        <img
+          src="./assets/images/vitalii-mazur-EH2AxIneZMw-unsplash.jpg"
+          alt="os"
+          className="h-[500px] w-full object-cover"
+        />
       </div>
-      <div className="bg-green-300 md:w-1/3 lg:w-1/4 px-5 py-40">left</div>
-    </div>
+      
+      <div className="h-full flex-row sm:flex " id="Container">
+        <Tabs id="custom-animation" value="Who" className="flex flex-col pb-20">
+          <TabsHeader className="py-10">
+            {data.map(({ label, value }) => (
+              <Tab
+                key={value}
+                value={value}
+                className="flex flex-row rounded ">
+                <h2 className="text-base font-semibold lg:text-xl ">{label}</h2>
+              </Tab>
+            ))}
+          </TabsHeader>
+          <TabsBody
+            className="flex flex-col lg:flex-row"
+            animate={{
+              initial: { y: 250 },
+              mount: { y: 10 },
+              unmount: { y: 250 },
+            }}>
+            {data.map(({ value, desc }) => (
+              <TabPanel
+                key={value}
+                value={value}
+                className="flex text-2xl lg:p-10 lg:text-1xl justify-center items-center font-bold leading-relaxed lg:leading-loose"
+                id="desc">
+                <p>{desc}</p>
+              </TabPanel>
+            ))}
+
+            {data.map(({ value, src }) => (
+              <TabPanel key={value} value={value} className="lg:p-10 ">
+                <img src={src} alt="person" className="rounded-lg" />
+              </TabPanel>
+            ))}
+          </TabsBody>
+        </Tabs>
+      </div>
+    </>
   );
 }
 
