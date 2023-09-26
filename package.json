@@ -1,5 +1,5 @@
 {
-  "proxy": "https://teamnetflixapp-backend.onrender.com",
+  "proxy": "https://netflix-clone-backend-jbbv.onrender.com",
   "name": "team-netflix-app-frontend",
   "version": "0.1.0",
   "private": true,
