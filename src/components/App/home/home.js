@@ -4,14 +4,15 @@ import ReactPaginate from "react-paginate";
 
 import { useAuthContext } from "../../../hooks/useAuthContext";
 import { MovieCard } from "../content/movieCard";
+import HeroSection from "../content/hero-section/hero-section";
+import {usePagination} from "../../../hooks/usePagination";
+import LoadingSpinner from "../content/loading-spinner";
+
 
 export default function Home() {
   const { user } = useAuthContext();
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 16;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,23 +39,23 @@ export default function Home() {
     fetchData();
   }, []);
 
-  // pagination
-  const totalPages = Math.ceil(movies.length / itemsPerPage);
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const subset = movies.slice(startIndex, endIndex);
-  const handlePageChange = (selectedPage) => {
-    setCurrentPage(selectedPage.selected);
-  };
+  // Pagination
+  const itemsPerPage = 16;
+  const {
+    currentPage,
+    totalPages,
+    subset,
+    handlePageChange,
+  } = usePagination(movies, itemsPerPage);
+
 
   return (
     <div className="container m-auto">
       {loading ? (
-        <div className="loading-container h-full flex align-middle justify-center text-3xl p-10">
-          <h1>Loading...</h1>
-        </div>
+          <LoadingSpinner/>
       ) : (
         <>
+          <HeroSection/>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 px-6">
             {subset.map((data) => (
               <MovieCard key={data.id} movie={data} />

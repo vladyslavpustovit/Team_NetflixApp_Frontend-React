@@ -122,7 +122,7 @@ function Header() {
           {navList}
           <Button
             onClick={handleClick}
-            className="ml-2 bg-red-700 rounded p-2.5 hover:bg-red-900 my-2 ">
+            className="ml-2 bg-red-700 rounded p-2.5 hover:bg-red-900 my-2">
             <span className="">Logout</span>
           </Button>
         </div>

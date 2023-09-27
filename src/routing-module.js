@@ -13,6 +13,7 @@ import Home from "./components/App/home/home";
 import Categories from "./components/App/categories/categories";
 import TopMovies from "./components/App/top-movies/top-movies";
 import About from "./components/App/about/about";
+import MovieDetails from "./components/App/movie-details/movie-details";
 
 
 export default function AppRouter() {
@@ -21,7 +22,7 @@ export default function AppRouter() {
     return (
         <>
             <BrowserRouter>
-                {user && <Header />}
+                 {user && <Header />}
                 <Routes>
                     <Route
                         path='/landing'
@@ -50,9 +51,11 @@ export default function AppRouter() {
                     <Route
                         path='/about'
                         element={ <About/> }
+                        path="/movie/:movieId"
+                        element={user ? <MovieDetails/> : <Navigate to='/login'/>}
                     />
                 </Routes>
-                {user && <Footer />}
+                 {user && <Footer />}
             </BrowserRouter>
         </>
     )
