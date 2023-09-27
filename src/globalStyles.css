@@ -89,6 +89,12 @@ body {
     color: #9d0911;
 }
 
+.paginate .active {
+    background-color: rgb(24, 24, 24);
+    color: #9d0911;
+
+}
+
 @media (max-width: 1222px) {
 
     .parent {

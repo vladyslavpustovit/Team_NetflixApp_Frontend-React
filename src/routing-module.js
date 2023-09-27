@@ -51,6 +51,8 @@ export default function AppRouter() {
                     <Route
                         path='/about'
                         element={ <About/> }
+                    />
+                    <Route
                         path="/movie/:movieId"
                         element={user ? <MovieDetails/> : <Navigate to='/login'/>}
                     />
