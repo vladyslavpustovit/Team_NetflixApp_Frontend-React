@@ -1,0 +1,44 @@
+
+/* #b91c1c; */
+
+
+#Container{
+    color: #b91c1c;
+}
+
+
+/* tabs items and contents */
+#custom-animation  ul {
+    display: flex;
+    justify-content: space-evenly;
+ 
+}
+
+#custom-animation li {
+    width: auto;
+    padding: 1rem;
+    border-radius: 5px;
+    transition: color 0.2s ease-in, background-color 0.2s ease-in;
+
+  }
+  
+#tabs{
+    color: #b91c1c;
+    
+}
+
+
+li:hover{
+    color: rgb(20, 19, 19);
+    background-color: #911717;
+}
+
+
+/* desc */
+
+#desc p{
+    border-radius: 20px;
+}
+
+
+
