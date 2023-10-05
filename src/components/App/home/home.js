@@ -11,7 +11,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 16;
+  const itemsPerPage = 18;
 
   useEffect(() => {
     const fetchData = async () => {
