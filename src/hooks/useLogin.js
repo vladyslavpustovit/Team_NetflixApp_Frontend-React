@@ -11,12 +11,13 @@ export const useLogin = () => {
         setError(null);
 
         const response = await fetch(
-            `${process.env.REACT_APP_API_URL}/users/login`, {
+            `/api/users/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({username, password}),
             }
         );
+        console.log(response);
         const json = await response.json();
         console.log(response.status)
         if (!(response.status === 200)) {

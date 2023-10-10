@@ -8,7 +8,7 @@ export const useSignup = () => {
         setError(null);
 
         const response = await fetch(
-            `${process.env.REACT_APP_API_URL}/users/register`, {
+            `/api/users/register`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({email, username, password}),

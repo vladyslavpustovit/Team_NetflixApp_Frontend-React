@@ -7,7 +7,7 @@ export const useMoviesCatalog = () => {
 
     const fetchMovieList = async () => {
         setIsLoading(true)
-        const response  = await fetch(`${process.env.REACT_APP_API_URL}/movies`, {
+        const response  = await fetch(`/api/movies`, {
             method: "GET",
             headers: {"Content-Type": "application/json",
                       Authorization:`Bearer ${user.token}`
