@@ -4,6 +4,7 @@ import {useMovieDetails} from "../../../hooks/useMovieDetails";
 import MovieHeader from "./movie-header";
 import LoadingSpinner from "../content/loading-spinner";
 import './movie-details.css'
+import MovieTeaser from "./movie-teaser";
 
 const MovieDetails = () => {
     const { movieId } = useParams();
@@ -26,10 +27,11 @@ const MovieDetails = () => {
     return (
         <div className="container m-auto">
             {!movie ? (
-                <LoadingSpinner/>
+                <LoadingSpinner message='Loading...'/>
             ) : (
                 <>
                     <MovieHeader movie={movie}/>
+                    <MovieTeaser movie={movie}/>
                 </>
                 )}
         </div>

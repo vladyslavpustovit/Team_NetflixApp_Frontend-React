@@ -3,10 +3,9 @@ import {useState} from "react";
 
 export const useMoviesCatalog = () => {
     const {user} = useAuthContext();
-    const [isLoading, setIsLoading] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     const fetchMovieList = async () => {
-        setIsLoading(true)
         const response  = await fetch('/movies', {
             method: "GET",
             headers: {"Content-Type": "application/json",

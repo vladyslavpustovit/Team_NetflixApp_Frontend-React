@@ -52,13 +52,13 @@ export default function Home() {
   return (
     <div className="container m-auto">
       {loading ? (
-          <LoadingSpinner/>
+          <LoadingSpinner message='Loading...'/>
       ) : (
         <>
           <HeroSection/>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 px-6">
-            {subset.map((data) => (
-              <MovieCard key={data.id} movie={data} />
+            {subset.map((data, index) => (
+              <MovieCard key={'movie' + index} movie={data} />
             ))}
           </div>
 
