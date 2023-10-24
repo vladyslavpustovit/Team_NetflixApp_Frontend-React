@@ -27,7 +27,7 @@ const MovieDetails = () => {
     return (
         <div className="container m-auto">
             {!movie ? (
-                <LoadingSpinner/>
+                <LoadingSpinner message='Loading...'/>
             ) : (
                 <>
                     <MovieHeader movie={movie}/>

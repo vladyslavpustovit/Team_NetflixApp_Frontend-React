@@ -18,8 +18,8 @@ const MovieHeader = ({movie}) => {
 
                 <div id='movie-genres' className='flex content-center mt-2'>
                     {
-                        movie.genre.map((genre)=>(
-                            <Chip className='bg-red-900 mr-2' value={genre} />
+                        movie.genre.map((genre, index) => (
+                            <Chip key={'genre' + index} className='bg-red-900 mr-2' value={genre} />
                         ))
                     }
                 </div>
@@ -31,9 +31,9 @@ const MovieHeader = ({movie}) => {
                     <div className='underline'></div>
                     <div className='mt-4'>
                         {
-                            movie.directors.map((actor=>(
-                                <p className='mt-1'>{actor}</p>
-                            )))
+                            movie.directors.map((director, index) => (
+                                <p key={'director' + index} className='mt-1'>{director}</p>
+                            ))
                         }
                     </div>
                 </div>
@@ -44,9 +44,9 @@ const MovieHeader = ({movie}) => {
                     <div className='underline'></div>
                     <div className='mt-4'>
                         {
-                            movie.actors.map((actor=>(
-                                <p className='mt-1'>{actor}</p>
-                            )))
+                            movie.actors.map((actor, index) => (
+                                <p key={'actor' + index} className='mt-1'>{actor}</p>
+                            ))
                         }
                     </div>
                 </div>

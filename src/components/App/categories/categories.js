@@ -13,7 +13,6 @@ function Categories() {
         const fetchData = async () => {
             try {
                 const data = await fetchMovieList();
-                console.log(data)
                 setMovies(data);
                 sortByGenres(data)
             } catch (error) {
@@ -37,7 +36,7 @@ function Categories() {
     return (
         <div className="flex flex-col items-center">
             {isLoading ? (
-                <LoadingSpinner/>
+                <LoadingSpinner message='Loading...'/>
             ) : (
                 <>
                     <HeroSection/>
