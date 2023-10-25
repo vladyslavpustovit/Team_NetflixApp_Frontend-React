@@ -52,7 +52,7 @@ export default function Home() {
   return (
     <div className="container m-auto">
       {loading ? (
-          <LoadingSpinner message='Loading...'/>
+                <LoadingSpinner size={100}/>
       ) : (
         <>
           <HeroSection/>

@@ -1,6 +1,7 @@
-import {useState} from "react";
+import React, {useState} from "react";
 import {useSignup} from "../../../hooks/useSignup";
 import {Link} from "react-router-dom";
+import LoadingSpinner from "../content/loading-spinner";
 export default function Register() {
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
@@ -9,7 +10,7 @@ export default function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         await signup(email, username, password);
-        // window.location.pathname = "/"
+        window.location.pathname = "/login"
     }
 
     return (
@@ -100,6 +101,9 @@ export default function Register() {
                 </p>
             </div>
             </div>
+            {isLoading && (
+                    <LoadingSpinner size={128} message='Processing your data...'/>
+            )}
         </div>
     );
 }

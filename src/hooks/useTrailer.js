@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-
-function useTrailer(imdbUrl) {
-    const [videoURLs, setVideoURLs] = useState([]);
+import { useState} from "react";
+export const useTrailer = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
+    const fetchTeaserURLs = async (imdbUrl) => {
+        setLoading(true);
+
         const inputString = imdbUrl;
         const parts = inputString.split("/");
         let imdbId;
@@ -16,38 +16,28 @@ function useTrailer(imdbUrl) {
             setError("Oops, there is an error");
         }
 
-        const fetchData = async () => {
-            try {
-                const response = await fetch(
-                    `https://europe-west1-puppeteer-teaser.cloudfunctions.net/scraper?title=${imdbId}`
-                );
+        const response = await fetch(
+            `https://europe-west1-puppeteer-teaser.cloudfunctions.net/scraper?title=${imdbId}`
+        );
 
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-
-                const data = await response.json();
-                setVideoURLs(data);
-            } catch (error) {
-                setError("Error fetching data");
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchData();
-    }, [imdbUrl]);
-
-    // Filter and process the data within the hook
-    const filteredVideoURLs = videoURLs
-        .filter((source) => /\d/.test(source.displayName.value)) // Include values with numbers
-        .map((source) => ({
-            src: source.url,
-            type: "video/mp4",
-            size: source.displayName.value.replace(/[^\d]/g, ""), // Remove all non-digit characters
-        }));
-
-    return { filteredVideoURLs, loading, error };
+        const json = await response.json();
+        if (!(response.status === 200)) {
+            setLoading(false)
+            setError('Unable to fetch teaser URL')
+            return;
+        }
+        if(response.status === 200) {
+            // Filter and process the data
+            const filteredVideoURLs = json
+                .filter((source) => /\d/.test(source.displayName.value)) // Include values with numbers
+                .map((source) => ({
+                    src: source.url,
+                    type: "video/mp4",
+                    size: source.displayName.value.replace(/[^\d]/g, ""), // Remove all non-digit characters
+                }));
+            setLoading(false);
+            return filteredVideoURLs;
+        }
+    }
+    return { fetchTeaserURLs, loading, error };
 }
-
-export default useTrailer;

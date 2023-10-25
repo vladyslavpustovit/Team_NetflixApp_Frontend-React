@@ -1,12 +1,27 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Plyr from "plyr-react";
 import "plyr-react/plyr.css";
-import useTrailer from "../../../hooks/useTrailer";
-import LoadingSpinner from "../content/loading-spinner"; // Import your custom hook
+import {useTrailer} from "../../../hooks/useTrailer";
+import LoadingSpinner from "../content/loading-spinner";
 
 const MovieTeaser = ({ movie }) => {
-    const { filteredVideoURLs, loading, error } = useTrailer(movie.imdb_url);
+    const [videoURLs, setVideoURLs] = useState([]);
+    const { fetchTeaserURLs, loading, error } = useTrailer(movie.imdb_url);
 
+    useEffect(() => {
+        const fetchMovieTeaser = async () => {
+            const imdbUrl = movie.imdb_url;
+            if (imdbUrl) {
+                const teaserURLs = await fetchTeaserURLs(imdbUrl);
+                if (teaserURLs) {
+                    setVideoURLs(teaserURLs);
+                } else {
+                    console.log('Teaser not Found')
+                }
+            }
+        };
+        fetchMovieTeaser();
+    }, []);
 
     if (error) {
         return <LoadingSpinner message='Trailer in not available'/>;
@@ -14,9 +29,9 @@ const MovieTeaser = ({ movie }) => {
 
     return (
         <div className="mx-auto px-4 md:px-20 2xl:container mt-8">
-            <h1 className="text-3xl text-center py-4">{`${movie.name} - Official Trailer`}</h1>
+            <h1 className="text-2xl text-center py-4">{`${movie.name} - Official Trailer`}</h1>
             <div className="flex justify-center">
-                <div className="w-[60vw] relative">
+                <div className="w-[100vw] md:w-[70vw] relative">
                     <Plyr
                         poster={movie.image_url}
                         options={{
@@ -39,15 +54,13 @@ const MovieTeaser = ({ movie }) => {
                         }}
                         source={{
                             type: "video",
-                            sources: filteredVideoURLs,
+                            sources: videoURLs,
                             poster: movie.image_url,
                         }}
                     />
-                    {/*{loading && (*/}
-                    {/*    <div className="absolute inset-0 flex items-center justify-center">*/}
-                    {/*        <div className='text-red-600'>Hello</div>*/}
-                    {/*    </div>*/}
-                    {/*)}*/}
+                    {loading && (
+                            <LoadingSpinner size={100}/>
+                    )}
                 </div>
             </div>
         </div>
@@ -55,3 +68,4 @@ const MovieTeaser = ({ movie }) => {
 };
 
 export default MovieTeaser;
+

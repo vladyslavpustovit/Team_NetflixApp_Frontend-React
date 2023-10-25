@@ -1,7 +1,8 @@
 import "./login.css";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useLogin } from "../../../hooks/useLogin";
 import { Link } from "react-router-dom";
+import LoadingSpinner from "../content/loading-spinner";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -14,7 +15,7 @@ export default function Login() {
 
   return (
     <div
-      className=" background flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8 text-white ">
+      className="background flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8 text-white">
     
       <div className=" container mx-auto bg-black/80 ml sm:mx-auto sm:w-full sm:max-w-sm ">
         <img
@@ -87,6 +88,9 @@ export default function Login() {
             >
               Sign in
             </button>
+            {isLoading && (
+                  <LoadingSpinner size={128} message='Logging in...'/>
+            )}
             {error && <div className="text-red-700 mt-2 text-sm">{error}</div>}
           </div>
         </form>

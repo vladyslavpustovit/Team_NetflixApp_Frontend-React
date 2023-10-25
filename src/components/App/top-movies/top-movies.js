@@ -37,7 +37,7 @@ const TopMovies = () => {
     return(
         <div className="flex flex-col items-center">
             {isLoading ? (
-                <LoadingSpinner message='Loading...'/>
+                <LoadingSpinner size={100}/>
             ) : (
                 <>
             <HeroSection/>
