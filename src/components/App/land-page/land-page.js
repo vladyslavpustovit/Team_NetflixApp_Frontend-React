@@ -15,7 +15,7 @@ function Landing () {
           {/* logo section */}
           <div>
           <img 
-            className="w-32 h-32 md:w-52 align-items-center"
+            className="w-32 md:w-52 align-items-center"
             src="/assets/images/logo.png" alt='logo-image'/>
           </div>
 

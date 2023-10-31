@@ -19,7 +19,7 @@ export default function Login() {
     
       <div className=" container mx-auto bg-black/80 ml sm:mx-auto sm:w-full sm:max-w-sm ">
         <img
-          className="mx-auto h-32 w-auto"
+          className="mx-auto h-24 mt-8 w-auto"
           src="/assets/images/logo.png"
           alt="Netflix"
         />
