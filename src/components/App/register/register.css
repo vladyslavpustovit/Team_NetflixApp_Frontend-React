@@ -1,5 +1,5 @@
 .background{
-    background: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)), url('../../../../public/assets/images/netflix.jpg'); 
+    background: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)), url('../../../../public/assets/images/landing_bg.jpg');
 	height: 100vh;
 	background-position: center;
 	background-size: cover;
