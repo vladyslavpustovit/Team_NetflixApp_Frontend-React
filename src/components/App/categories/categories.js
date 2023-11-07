@@ -1,4 +1,3 @@
-import './categories.css';
 import React, {useEffect, useState} from "react";
 import {useMoviesCatalog} from "../../../hooks/useMoviesCatalog";
 import CardsSection from "../content/cards-section";

@@ -1,6 +1,6 @@
 import React from "react";
 import "./about.css";
-
+import {aboutData} from "./aboutData";
 import {
   Tabs,
   TabsHeader,
@@ -10,13 +10,12 @@ import {
 } from "@material-tailwind/react";
 
 function About() {
-  const data = require("./about.json");
 
   return (
     <>
       <div className="mt-10 px-5">
         <img
-          src="./assets/images/vitalii-mazur-EH2AxIneZMw-unsplash.jpg"
+          src="/assets/images/vitalii-mazur-EH2AxIneZMw-unsplash.jpg"
           alt="os"
           className="h-[500px] w-full object-cover"
         />
@@ -25,12 +24,12 @@ function About() {
       <div className="h-full flex-row sm:flex " id="Container">
         <Tabs id="custom-animation" value="Who" className="flex flex-col pb-20">
           <TabsHeader className="py-10">
-            {data.map(({ label, value }) => (
+            {aboutData.map(({ label, value }) => (
               <Tab
                 key={value}
                 value={value}
-                className="flex flex-row rounded ">
-                <h2 className="text-base font-semibold lg:text-xl ">{label}</h2>
+                className="flex flex-row rounded">
+                <h2 className="text-base font-semibold lg:text-xl">{label}</h2>
               </Tab>
             ))}
           </TabsHeader>
@@ -41,7 +40,7 @@ function About() {
               mount: { y: 10 },
               unmount: { y: 250 },
             }}>
-            {data.map(({ value, desc }) => (
+            {aboutData.map(({ value, desc }) => (
               <TabPanel
                 key={value}
                 value={value}
@@ -51,7 +50,7 @@ function About() {
               </TabPanel>
             ))}
 
-            {data.map(({ value, src }) => (
+            {aboutData.map(({ value, src }) => (
               <TabPanel key={value} value={value} className="lg:p-10 ">
                 <img src={src} alt="person" className="rounded-lg" />
               </TabPanel>

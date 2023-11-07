@@ -18,6 +18,10 @@ body {
     box-sizing: border-box;
 }
 
+.logo {
+    filter: drop-shadow(0px 0px 10px rgba(255, 0, 0, 0.8));
+}
+
 /* -------------- Welcome Slider Styling -------------- */
 
 #welcome-slider {

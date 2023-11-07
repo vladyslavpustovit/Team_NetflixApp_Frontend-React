@@ -11,7 +11,7 @@
 #custom-animation  ul {
     display: flex;
     justify-content: space-evenly;
- 
+
 }
 
 #custom-animation li {
@@ -21,14 +21,9 @@
     transition: color 0.2s ease-in, background-color 0.2s ease-in;
 
   }
-  
-#tabs{
-    color: #b91c1c;
-    
-}
 
 
-li:hover{
+#custom-animation li:hover{
     color: rgb(20, 19, 19);
     background-color: #911717;
 }

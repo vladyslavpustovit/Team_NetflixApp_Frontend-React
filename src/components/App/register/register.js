@@ -17,7 +17,7 @@ export default function Register() {
         <div className=" background flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8 text-white">
             <div className=" container mx-auto bg-black/80 sm:mx-auto sm:w-full sm:max-w-sm">
                 <img
-                    className="mx-auto mt-8 h-24 w-auto"
+                    className="logo mx-auto mt-8 h-24 w-auto"
                     src="/assets/images/logo.png"
                     alt="Netflix"
                 />

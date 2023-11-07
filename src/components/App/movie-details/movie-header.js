@@ -11,7 +11,7 @@ const MovieHeader = ({movie}) => {
             <div id='right-info' className="w-full md:w-4/6 mt-4 md:mt-0">
                 <h1 className='text-4xl'>{movie.name + " " + movie.year}</h1>
 
-                <div id='rating' className='flex content-center mt-12'>
+                <div id='rating' className='flex content-center mt-4 lg:mt-12'>
                     <Rating value={ Math.floor(movie.rating / 2)} readonly className='flex content-center text-red-600'/>
                     <h3 className='ml-2'>{movie.rating}</h3>
                 </div>
@@ -26,7 +26,7 @@ const MovieHeader = ({movie}) => {
 
                 <p className='mt-8 w-5/6'>{movie.desc}</p>
 
-                <div id='directors' className='mt-12'>
+                <div id='directors' className='mt-4 lg:mt-12'>
                     <h1 className='text-3xl'>Directors</h1>
                     <div className='underline'></div>
                     <div className='mt-4'>
@@ -39,7 +39,7 @@ const MovieHeader = ({movie}) => {
                 </div>
 
 
-                <div id='cast' className='mt-8'>
+                <div id='cast' className='mt-4 lg:mt-12'>
                     <h1 className='text-3xl'>Cast</h1>
                     <div className='underline'></div>
                     <div className='mt-4'>

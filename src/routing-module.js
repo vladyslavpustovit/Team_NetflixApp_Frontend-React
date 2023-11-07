@@ -14,6 +14,7 @@ import Categories from "./components/App/categories/categories";
 import TopMovies from "./components/App/top-movies/top-movies";
 import About from "./components/App/about/about";
 import MovieDetails from "./components/App/movie-details/movie-details";
+import SearchResults from "./components/App/search-results/search-results";
 
 
 export default function AppRouter() {
@@ -55,6 +56,10 @@ export default function AppRouter() {
                     <Route
                         path="/movie/:movieId"
                         element={user ? <MovieDetails/> : <Navigate to='/login'/>}
+                    />
+                    <Route
+                        path="/search-results"
+                        element={user ? <SearchResults/> : <Navigate to='/login'/>}
                     />
                 </Routes>
                  {user && <Footer />}
