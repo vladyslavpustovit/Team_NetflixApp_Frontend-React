@@ -25,7 +25,7 @@ const MovieDetails = () => {
         fetchMovieDetails();
     }, []);
     return (
-        <div className="container m-auto">
+        <div className="container mx-auto mt-8 lg:mt-12">
             {!movie ? (
                 <LoadingSpinner size={100}/>
             ) : (
