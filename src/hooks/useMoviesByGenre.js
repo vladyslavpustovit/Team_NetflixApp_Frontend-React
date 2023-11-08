@@ -9,7 +9,7 @@ export const useMoviesByGenre = () => {
 
     const fetchMoviesByGenre = async (genre) => {
         setIsLoading(true);
-        const response  = await fetch(`/movies/genres/${genre}`, {
+        const response  = await fetch(`/api/movies/genres/${genre}`, {
             method: "GET",
             headers: {"Content-Type": "application/json",
                 Authorization:`Bearer ${user.token}`
