@@ -73,7 +73,7 @@ function Header() {
             {/* Openable Mobile Menu */}
             <Collapse open={openNav}>
                 <div className="container mx-auto">
-                    <NavList/>
+                    <NavList setOpenNav={setOpenNav}/>
                     <LogoutBtn/>
                 </div>
            </Collapse>
