@@ -1,9 +1,11 @@
 import { useAuthContext } from "./useAuthContext";
 import { useState } from "react";
+import {useLogout} from "./useLogout";
 
 export const useMovieDetails = () => {
     const { user } = useAuthContext();
     const [isLoading, setIsLoading] = useState(null);
+    const {logout} = useLogout();
 
     const fetchMovieById = async (movieId) => {
         setIsLoading(true);
@@ -17,10 +19,16 @@ export const useMovieDetails = () => {
             });
 
         const json = await response.json();
+        if (response.status === 401) {
+            setIsLoading(false);
+            logout();
+        }
+
         if (!(response.status === 200)) {
-            setIsLoading(false)
+            setIsLoading(false);
             return;
         }
+
         if(response.status === 200) {
             setIsLoading(false)
             return json;

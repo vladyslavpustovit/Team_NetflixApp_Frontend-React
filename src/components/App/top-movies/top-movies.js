@@ -37,25 +37,27 @@ const TopMovies = () => {
     return(
         <div className="flex flex-col items-center">
             {isLoading ? (
-                <LoadingSpinner/>
+                <LoadingSpinner size={100}/>
             ) : (
                 <>
             <HeroSection/>
             <h1 className='ml-1.5 text-2xl font-bold mb-6'>Top Movies</h1>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 px-6">
-                  {subset.map((movie) => (
-                      <MovieCard key={movie.id} movie={movie} />
+                  {subset.map((movie, index) => (
+                      <MovieCard key={'movie' + index} movie={movie} />
                   ))}
               </div>
-            <div className="parent flex items-center gap-4">
-                <ReactPaginate
-                    className="paginate"
-                    pageCount={totalPages}
-                    onPageChange={handlePageChange}
-                    forcePage={currentPage}
-                    pageLinkClassName='PageLink'//this is the anchor(a) tage inside the pagination
-                />
-            </div>
+                    {totalPages > 0 && (
+                        <div className="parent flex items-center gap-4">
+                            <ReactPaginate
+                                className="paginate"
+                                pageCount={totalPages}
+                                onPageChange={handlePageChange}
+                                forcePage={currentPage}
+                                pageLinkClassName="PageLink"
+                            />
+                        </div>
+                    )}
                 </>
             )}
         </div>

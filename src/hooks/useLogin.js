@@ -1,34 +1,51 @@
-import {useState} from "react";
-import {useAuthContext} from "./useAuthContext";
+import { useState } from "react";
+import { useAuthContext } from "./useAuthContext";
 
 export const useLogin = () => {
     const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
     const { dispatch } = useAuthContext();
 
     const login = async (username, password) => {
         setIsLoading(true);
         setError(null);
 
-        const response = await fetch(
-            `/api/users/login`, {
+        const controller = new AbortController();
+        const timeout = 20000; // 20 seconds
+
+        // Set up a timeout to abort the request after 20 seconds
+        const timeoutId = setTimeout(() => {
+            controller.abort();
+        }, timeout);
+
+        try {
+            const response = await fetch("/api/users/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({username, password}),
+                body: JSON.stringify({ username, password }),
+                signal: controller.signal, // Pass the abort signal to the fetch request
+            });
+
+            const json = await response.json();
+            console.log(response.status);
+
+            if (response.status !== 200) {
+                setError(json.msg);
+            } else {
+                localStorage.setItem("user", JSON.stringify(json));
+                dispatch({ type: 'LOGIN', payload: json });
             }
-        );
-        console.log(response);
-        const json = await response.json();
-        console.log(response.status)
-        if (!(response.status === 200)) {
-            setIsLoading(false);
-            setError(json.msg);
-        }
-        if (response.status === 200) {
-            localStorage.setItem("user", JSON.stringify(json))
-            dispatch({type: 'LOGIN', payload: json});
+        } catch (error) {
+            if (error.name === 'AbortError') {
+                setError('Request timed out');
+            } else {
+                setError('An error occurred during the request');
+            }
+        } finally {
+            clearTimeout(timeoutId); // Clear the timeout
             setIsLoading(false);
         }
-    }
-    return { login, isLoading, error }
-}
+    };
+
+    return { login, isLoading, error };
+};
