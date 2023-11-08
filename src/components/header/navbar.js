@@ -8,7 +8,10 @@ const NavList = (props) => {
     const {setOpenNav} = props;
 
     const closeNavbar = () => {
-        setOpenNav(false); // Close mobile navigation
+        // Check if current navbar is mobile
+        if (window.innerWidth <= 960) {
+            setOpenNav(false); // Close mobile navigation
+        }
     };
     return (
         <ul style={fontStyle} className={`font-medium mt-2 flex flex-col
