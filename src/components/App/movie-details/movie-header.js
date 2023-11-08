@@ -1,5 +1,6 @@
 import {Chip, Rating} from "@material-tailwind/react";
 import React from "react";
+import {Link} from "react-router-dom";
 
 const MovieHeader = ({movie}) => {
     return(
@@ -19,7 +20,11 @@ const MovieHeader = ({movie}) => {
                 <div id='movie-genres' className='flex content-center mt-2'>
                     {
                         movie.genre.map((genre, index) => (
-                            <Chip key={'genre' + index} className='bg-red-900 mr-2' value={genre} />
+                            <Link
+                                to={`/search-results?genre=${genre}`}
+                                key={"genre" + index}>
+                                <Chip className='bg-red-900 mr-2 hover:bg-red-950' value={genre} />
+                            </Link>
                         ))
                     }
                 </div>

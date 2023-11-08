@@ -1,16 +1,16 @@
 import {useAuthContext} from "./useAuthContext";
 import {useState} from "react";
 
-export const useMoviesCatalog = () => {
+export const useMoviesByGenre = () => {
     const {user} = useAuthContext();
     const [isLoading, setIsLoading] = useState(false);
 
-    const fetchMovieList = async () => {
+    const fetchMoviesByGenre = async (genre) => {
         setIsLoading(true);
-        const response  = await fetch('/movies', {
+        const response  = await fetch(`/movies/genres/${genre}`, {
             method: "GET",
             headers: {"Content-Type": "application/json",
-                      Authorization:`Bearer ${user.token}`
+                Authorization:`Bearer ${user.token}`
             }
         })
         const json = await response.json();
@@ -23,5 +23,5 @@ export const useMoviesCatalog = () => {
             return json;
         }
     }
-    return {fetchMovieList, isLoading}
+    return {fetchMoviesByGenre, isLoading}
 }
