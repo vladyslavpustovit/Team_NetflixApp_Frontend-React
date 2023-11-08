@@ -1,38 +1,24 @@
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 
-import { useAuthContext } from "../../../hooks/useAuthContext";
 import { MovieCard } from "../content/movieCard";
 import HeroSection from "../content/hero-section/hero-section";
 import {usePagination} from "../../../hooks/usePagination";
 import LoadingSpinner from "../content/loading-spinner";
+import {useMoviesCatalog} from "../../../hooks/useMoviesCatalog";
 
 
 export default function Home() {
-  const { user } = useAuthContext();
   const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const {fetchMovieList, isLoading} = useMoviesCatalog();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/movies", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const json = await response.json();
-        setMovies(json);
+        const data = await fetchMovieList();
+        setMovies(data);
       } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
+        console.error("An error occurred while fetching data:", error);
       }
     };
     fetchData();
@@ -50,7 +36,7 @@ export default function Home() {
 
   return (
     <div className="container m-auto">
-      {loading ? (
+      {isLoading ? (
                 <LoadingSpinner size={100}/>
       ) : (
         <>
@@ -61,17 +47,17 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="parent flex items-center gap-4">
-            <ReactPaginate
-              pageRangeDisplayed={1}
-              className="paginate"
-              pageCount={totalPages}
-              onPageChange={handlePageChange}
-              forcePage={currentPage}
-              activeClassName="active"
-              pageLinkClassName="PageLink"
-            />
-          </div>
+          {totalPages > 0 && (
+              <div className="parent flex items-center gap-4">
+                <ReactPaginate
+                    className="paginate"
+                    pageCount={totalPages}
+                    onPageChange={handlePageChange}
+                    forcePage={currentPage}
+                    pageLinkClassName="PageLink"
+                />
+              </div>
+          )}
         </>
       )}
     </div>

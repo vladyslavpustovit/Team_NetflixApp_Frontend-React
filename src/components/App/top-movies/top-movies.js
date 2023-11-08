@@ -47,15 +47,17 @@ const TopMovies = () => {
                       <MovieCard key={'movie' + index} movie={movie} />
                   ))}
               </div>
-            <div className="parent flex items-center gap-4">
-                <ReactPaginate
-                    className="paginate"
-                    pageCount={totalPages}
-                    onPageChange={handlePageChange}
-                    forcePage={currentPage}
-                    pageLinkClassName='PageLink'//this is the anchor(a) tage inside the pagination
-                />
-            </div>
+                    {totalPages > 0 && (
+                        <div className="parent flex items-center gap-4">
+                            <ReactPaginate
+                                className="paginate"
+                                pageCount={totalPages}
+                                onPageChange={handlePageChange}
+                                forcePage={currentPage}
+                                pageLinkClassName="PageLink"
+                            />
+                        </div>
+                    )}
                 </>
             )}
         </div>

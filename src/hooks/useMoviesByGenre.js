@@ -1,9 +1,11 @@
 import {useAuthContext} from "./useAuthContext";
 import {useState} from "react";
+import {useLogout} from "./useLogout";
 
 export const useMoviesByGenre = () => {
     const {user} = useAuthContext();
     const [isLoading, setIsLoading] = useState(false);
+    const {logout} = useLogout();
 
     const fetchMoviesByGenre = async (genre) => {
         setIsLoading(true);
@@ -14,10 +16,16 @@ export const useMoviesByGenre = () => {
             }
         })
         const json = await response.json();
+        if (response.status === 401) {
+            setIsLoading(false);
+            logout();
+        }
+
         if (!(response.status === 200)) {
-            setIsLoading(false)
+            setIsLoading(false);
             return;
         }
+
         if(response.status === 200) {
             setIsLoading(false)
             return json;
