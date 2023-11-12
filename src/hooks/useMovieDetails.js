@@ -6,11 +6,12 @@ export const useMovieDetails = () => {
     const { user } = useAuthContext();
     const [isLoading, setIsLoading] = useState(null);
     const {logout} = useLogout();
+    const apiUrl = process.env.REACT_APP_API_URL;
 
     const fetchMovieById = async (movieId) => {
         setIsLoading(true);
 
-            const response = await fetch(`/api/movies/${movieId}`, {
+            const response = await fetch(`${apiUrl}/movies/${movieId}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",

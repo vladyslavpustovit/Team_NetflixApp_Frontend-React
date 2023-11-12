@@ -3,6 +3,7 @@ import { useState } from "react";
 export const useSignup = () => {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const apiUrl = process.env.REACT_APP_API_URL;
 
     const signup = async (email, username, password) => {
         setIsLoading(true);
@@ -17,7 +18,7 @@ export const useSignup = () => {
         }, timeout);
 
         try {
-            const response = await fetch("/api/users/register", {
+            const response = await fetch(`${apiUrl}/users/register`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, username, password }),

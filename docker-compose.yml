@@ -11,10 +11,8 @@ services:
     image: vladpustovit/netflix-c-backend:1.0.0
     ports:
       - "8181:8181"
-    environment:
-      - DB_URL=mongodb+srv://loodi181:Khalidali181@cluster0.kkj1cus.mongodb.net/netflix-app?retryWrites=true&w=majority
-      - PORT=8181
-      - JWT_KEY=TeamG
+    env_file:
+      - .env
   nginx:
     depends_on:
       - client
