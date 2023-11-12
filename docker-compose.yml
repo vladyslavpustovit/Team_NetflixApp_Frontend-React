@@ -1,0 +1,25 @@
+version: '3'
+services:
+  client:
+    stdin_open: true
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+  api:
+    image: vladpustovit/netflix-c-backend:1.0.0
+    ports:
+      - "8181:8181"
+    env_file:
+      - .env
+  nginx:
+    depends_on:
+      - client
+      - api
+    restart: always
+    build:
+      context: ./nginx-main
+      dockerfile: Dockerfile
+    ports:
+      - "9090:80"

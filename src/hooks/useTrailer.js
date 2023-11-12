@@ -2,6 +2,7 @@ import { useState} from "react";
 export const useTrailer = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const scraperUrl = process.env.REACT_APP_SCRAPER_URL;
 
     const fetchTeaserURLs = async (imdbUrl) => {
         setLoading(true);
@@ -17,7 +18,7 @@ export const useTrailer = () => {
         }
 
         const response = await fetch(
-            `https://europe-west1-puppeteer-teaser.cloudfunctions.net/scraper?title=${imdbId}`
+            `${scraperUrl}?title=${imdbId}`
         );
 
         const json = await response.json();

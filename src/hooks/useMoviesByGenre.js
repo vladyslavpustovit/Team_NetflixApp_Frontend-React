@@ -6,10 +6,11 @@ export const useMoviesByGenre = () => {
     const {user} = useAuthContext();
     const [isLoading, setIsLoading] = useState(false);
     const {logout} = useLogout();
+    const apiUrl = process.env.REACT_APP_API_URL;
 
     const fetchMoviesByGenre = async (genre) => {
         setIsLoading(true);
-        const response  = await fetch(`/movies/genres/${genre}`, {
+        const response  = await fetch(`${apiUrl}/movies/genres/${genre}`, {
             method: "GET",
             headers: {"Content-Type": "application/json",
                 Authorization:`Bearer ${user.token}`
