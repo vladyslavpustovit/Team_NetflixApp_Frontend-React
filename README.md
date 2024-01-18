@@ -3,7 +3,8 @@
 ## This application is an Academic Project
 
 ## Description
-`Cinex is a full-stack web application created by the team of 3 Intec Brussel students.  `
+`Cinex is a full-stack web application created by the team of 3 Intec Brussel students.`
+`Used technologies: ReactJS, Express.js, TailwindCSS, MongoDB, Git/Github, Docker, docker-compose, Google Cloud Services`
 ## App Backend Link
 `https://github.com/vladyslavpustovit/TeamNetflixApp_Backend`
 ## Application Architecture
