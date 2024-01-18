@@ -1,4 +1,4 @@
-# Cinex Movie App
+# Cinex Movie App 
 
 ## This application is an Academic Project
 
