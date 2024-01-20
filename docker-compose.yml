@@ -22,4 +22,5 @@ services:
       context: ./nginx-main
       dockerfile: Dockerfile
     ports:
-      - "9090:80"
+      - "443:443"
+
