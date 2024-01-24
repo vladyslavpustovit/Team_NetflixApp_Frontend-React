@@ -69,16 +69,16 @@ const SearchResults = () => {
     const queryForTitle = searchQuery || genreQuery;
 
     return (
-        <div className="flex flex-col items-center mt-8">
+        <div className="container m-auto">
             {isLoadingByGenre || isLoadingCatalog ? (
                 <LoadingSpinner size={100} />
             ) : (
                 <>
                     {notFoundMessage ? (
-                        <div className='text-xl lg:text-4xl font-extrabold h-[60vh] flex items-center'>{notFoundMessage}</div>
+                        <div className='text-xl lg:text-4xl font-extrabold h-[60vh] flex justify-center items-center'>{notFoundMessage}</div>
                     ) : (
                         <>
-                            <div className='mx-8 md:mx-12 lg:mx-20 text-xl md:text-2xl lg:text-4xl font-extrabold text-center'>Movies matching your request: <br/><span className='text-red-800'>{queryForTitle}</span></div>
+                            <div className='mt-6 mx-8 md:mx-12 lg:mx-20 text-xl md:text-2xl lg:text-4xl font-extrabold text-center'>Movies matching your request: <br/><span className='text-red-800'>{queryForTitle}</span></div>
                             <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 px-6 mt-8 lg:mt-12">
                                 {subset.map((movie, index) => (
                                     <MovieCard key={'movie' + index} movie={movie} />

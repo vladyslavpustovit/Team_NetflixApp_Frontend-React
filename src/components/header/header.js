@@ -1,5 +1,4 @@
 import { useAuthContext } from "../../hooks/useAuthContext";
-import { Link } from "react-router-dom";
 import {
     Navbar,
     Typography,
@@ -39,9 +38,7 @@ function Header() {
             <div className="mx-auto flex items-center">
                 {/* Site logo */}
                     <Typography as="a" href="/" className="mr-4 cursor-pointer">
-                        <Link to="/">
                             <img src="/assets/images/logo.png" className="logo fill-current w-32" alt="logo" />
-                        </Link>
                     </Typography>
 
                 {/* Desktop Navigation */}

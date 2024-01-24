@@ -35,13 +35,13 @@ const TopMovies = () => {
 
 
     return(
-        <div className="flex flex-col items-center">
+        <div className="container m-auto">
             {isLoading ? (
                 <LoadingSpinner size={100}/>
             ) : (
                 <>
             <HeroSection/>
-            <h1 className='ml-1.5 text-2xl font-bold mb-6'>Top Movies</h1>
+            <h1 className='text-2xl font-bold mb-6 text-center'>Top Movies</h1>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 px-6">
                   {subset.map((movie, index) => (
                       <MovieCard key={'movie' + index} movie={movie} />
