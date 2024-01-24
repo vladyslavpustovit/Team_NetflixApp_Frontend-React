@@ -1,20 +1,26 @@
 import React, {useState} from "react";
 import {useSignup} from "../../../hooks/useSignup";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import LoadingSpinner from "../content/loading-spinner";
 export default function Register() {
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const { signup, error, isLoading } = useSignup();
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        await signup(email, username, password);
-        window.location.pathname = "/login"
+
+    const onRegSuccess = () => {
+        navigate("/login")
     }
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        await signup(email, username, password, onRegSuccess)
+    }
+
+
     return (
-        <div className=" background flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8 text-white">
+        <div className="background flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8 text-white">
             <div className=" container mx-auto bg-black/80 sm:mx-auto sm:w-full sm:max-w-sm">
                 <img
                     className="logo mx-auto mt-8 h-24 w-auto"
