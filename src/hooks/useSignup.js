@@ -1,11 +1,11 @@
-import { useState } from "react";
+import {useState} from "react";
 
 export const useSignup = () => {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const apiUrl = process.env.REACT_APP_API_URL;
 
-    const signup = async (email, username, password) => {
+    const signup = async (email, username, password, onRegSuccess) => {
         setIsLoading(true);
         setError(null);
 
@@ -26,16 +26,18 @@ export const useSignup = () => {
             });
 
             const json = await response.json();
-            console.log(response.status);
 
             if (response.status !== 201) {
-                setError(json.msg);
+                throw new Error(json.msg);
             }
+
+            // Redirect to /login page if signup is successful
+            onRegSuccess();
         } catch (error) {
             if (error.name === 'AbortError') {
                 setError('Request timed out');
             } else {
-                setError('An error occurred during the request');
+                setError(error.message || 'An error occurred during the request');
             }
         } finally {
             clearTimeout(timeoutId); // Clear the timeout
@@ -45,4 +47,3 @@ export const useSignup = () => {
 
     return { signup, isLoading, error };
 };
-
