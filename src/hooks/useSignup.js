@@ -34,7 +34,6 @@ export const useSignup = () => {
             // Redirect to /login page if signup is successful
             onRegSuccess();
         } catch (error) {
-            console.log(error)
             if (error.name === 'AbortError') {
                 setError('Request timed out');
             } else {
