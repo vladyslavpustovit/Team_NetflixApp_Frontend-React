@@ -2,26 +2,27 @@ import React, {useState} from "react";
 import {useSignup} from "../../../hooks/useSignup";
 import {Link, useNavigate} from "react-router-dom";
 import LoadingSpinner from "../content/loading-spinner";
+import {useForm} from "react-hook-form";
 export default function Register() {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
     const navigate = useNavigate();
-    const [email, setEmail] = useState('');
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
     const { signup, error, isLoading } = useSignup();
 
     const onRegSuccess = () => {
         navigate("/login")
     }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        await signup(email, username, password, onRegSuccess)
+    const onSubmit = async (data) => {
+        await signup(data, onRegSuccess)
     }
-
 
     return (
         <div className="background flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8 text-white">
-            <div className=" container mx-auto bg-black/80 sm:mx-auto sm:w-full sm:max-w-sm">
+            <div className="container mx-auto bg-black/80 sm:mx-auto sm:w-full sm:max-w-sm">
                 <img
                     className="logo mx-auto mt-8 h-24 w-auto"
                     src="/assets/images/logo.png"
@@ -32,8 +33,8 @@ export default function Register() {
                 </h2>
            
 
-            <div className=" px-6 pb-4 mt-6 sm:mx-auto sm:w-full sm:max-w-sm">
-                <form className="space-y-6" onSubmit={handleSubmit}>
+            <div className="px-6 pb-4 mt-6 sm:mx-auto sm:w-full sm:max-w-sm">
+                <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
                     <div>
                         <label htmlFor="email" className="block text-sm font-medium leading-6">
                             Email
@@ -43,12 +44,18 @@ export default function Register() {
                                 id="email"
                                 name="email"
                                 type="email"
+                                {...register('email', {
+                                    required: "Email is required",
+                                    maxLength: {value: 50, message: "Maximum is 50 characters"},
+                                    validate: (fieldValue) => {
+                                        return !fieldValue.includes(' ') || "No spaces allowed"
+                                    }
+                                })}
                                 autoComplete="email"
-                                required
-                                onChange={(e)=>setEmail(e.target.value)}
                                 className="block w-full rounded-md border-0 py-1.5 pl-2 bg-gray-700 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 text-white"
                             />
                         </div>
+                        <div className="text-red-700 mt-2 text-sm">{errors.email?.message}</div>
                     </div>
 
                     <div>
@@ -60,12 +67,19 @@ export default function Register() {
                                 id="username"
                                 name="username"
                                 type="username"
+                                {...register('username', {
+                                    required: "Username is required",
+                                    minLength: {value: 5, message: "Minimum is 5 characters"},
+                                    maxLength: {value: 20, message: "Maximum is 20 characters"},
+                                    validate: (fieldValue) => {
+                                        return !fieldValue.includes(' ') || "No spaces allowed"
+                                    }
+                                })}
                                 autoComplete="username"
-                                required
-                                onChange={(e)=>setUsername(e.target.value)}
                                 className="block w-full rounded-md border-0 py-1.5 pl-2 bg-gray-700 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 text-white"
                             />
                         </div>
+                        <div className="text-red-700 mt-2 text-sm">{errors.username?.message}</div>
                     </div>
 
                     <div>
@@ -79,12 +93,19 @@ export default function Register() {
                                 id="password"
                                 name="password"
                                 type="password"
+                                {...register('password', {
+                                    required: "Password is required",
+                                    minLength: {value: 8, message: "Minimum is 8 characters"},
+                                    maxLength: {value: 20, message: "Maximum is 20 characters"},
+                                    validate: (fieldValue) => {
+                                        return !fieldValue.includes(' ') || "No spaces allowed"
+                                    }
+                                })}
                                 autoComplete="current-password"
-                                required
-                                onChange={(e)=>setPassword(e.target.value)}
                                 className="block w-full rounded-md border-0 py-1.5 pl-2 bg-gray-700 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 text-white"
                             />
                         </div>
+                        <div className="text-red-700 mt-2 text-sm">{errors.password?.message}</div>
                     </div>
 
                     <div>
