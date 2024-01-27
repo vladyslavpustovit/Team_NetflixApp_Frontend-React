@@ -5,7 +5,7 @@ export const useSignup = () => {
     const [isLoading, setIsLoading] = useState(false);
     const apiUrl = process.env.REACT_APP_API_URL;
 
-    const signup = async (email, username, password, onRegSuccess) => {
+    const signup = async (userInfo, onRegSuccess) => {
         setIsLoading(true);
         setError(null);
 
@@ -21,7 +21,7 @@ export const useSignup = () => {
             const response = await fetch(`${apiUrl}/users/register`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, username, password }),
+                body: JSON.stringify(userInfo),
                 signal: controller.signal, // Pass the abort signal to the fetch request
             });
 
